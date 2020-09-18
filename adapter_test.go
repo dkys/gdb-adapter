@@ -75,9 +75,9 @@ func testSaveLoad(t *testing.T, a *Adapter) {
 	testGetPolicy(t, e, [][]string{{"alice", "data1", "read"}, {"bob", "data2", "write"}, {"data2_admin", "data2", "read"}, {"data2_admin", "data2", "write"}})
 }
 
-func initAdapter(t *testing.T, driverName string, dataSourceName string) *Adapter {
+func initAdapter(t *testing.T, driverName string, dataSourceName string, tableName string) *Adapter {
 	// Create an adapter
-	a, err := NewAdapter(driverName, dataSourceName)
+	a, err := NewAdapter(driverName, dataSourceName,tableName)
 	if err != nil {
 		panic(err)
 	}
@@ -143,24 +143,24 @@ func testAutoSave(t *testing.T, a *Adapter) {
 }
 
 func TestAdapters(t *testing.T) {
-	a := initAdapter(t, "mysql", "root:@tcp(127.0.0.1:3306)/casbin")
+	a := initAdapter(t, "mysql", "root:@tcp(127.0.0.1:3306)/casbin","casbin_role")
 	testAutoSave(t, a)
 	testSaveLoad(t, a)
 
-	a = initAdapter(t, "pgsql", "user=postgres host=127.0.0.1 port=5432 sslmode=disable dbname=casbin")
+	a = initAdapter(t, "pgsql", "user=postgres host=127.0.0.1 port=5432 sslmode=disable dbname=casbin","casbin_role")
 	testAutoSave(t, a)
 	testSaveLoad(t, a)
 
 	a = initAdapterFormOptions(t, &Adapter{
-		driverName:     "mysql",
-		dataSourceName: "root:@tcp(127.0.0.1:3306)/casbin",
+		DriverName:     "mysql",
+		DataSourceName: "root:@tcp(127.0.0.1:3306)/casbin",
 	})
 	testAutoSave(t, a)
 	testSaveLoad(t, a)
 
 	a = initAdapterFormOptions(t, &Adapter{
-		driverName:     "pgsql",
-		dataSourceName: "user=postgres host=127.0.0.1 port=5432 sslmode=disable dbname=casbin",
+		DriverName:     "pgsql",
+		DataSourceName: "user=postgres host=127.0.0.1 port=5432 sslmode=disable dbname=casbin",
 	})
 	testAutoSave(t, a)
 	testSaveLoad(t, a)
