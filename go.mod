@@ -1,4 +1,4 @@
-module github.com/vance-liu/gdb-adapter
+module github.com/qq673675158/gdb-adapter
 
 go 1.12
 
