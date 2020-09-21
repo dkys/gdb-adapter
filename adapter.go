@@ -88,14 +88,12 @@ func (a *Adapter) open() error {
 	var err error
 	var db gdb.DB
 
-	gdb.SetConfig(gdb.Config{
-		"casbin": gdb.ConfigGroup{
-			gdb.ConfigNode{
-				Type:     a.DriverName,
-				LinkInfo: a.DataSourceName,
-				Role:     "master",
-				Weight:   100,
-			},
+	gdb.SetConfigGroup("casbin", gdb.ConfigGroup{
+		gdb.ConfigNode{
+			Type:     a.DriverName,
+			LinkInfo: a.DataSourceName,
+			Role:     "master",
+			Weight:   100,
 		},
 	})
 	db, err = gdb.New("casbin")
