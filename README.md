@@ -9,7 +9,7 @@ Based on [GF ORM](https://github.com/gogf/gf), and tested in:
 
 ## Installation
 
-    go get gitee.com/yxmmer/gdb-adapter
+    go get github.com/qq673675158/gdb-adapter
 
 ## Usage example
 
