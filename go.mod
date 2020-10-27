@@ -1,4 +1,4 @@
-module github.com/qq673675158/gdb-adapter
+module github.com/dkys/gdb-adapter
 
 go 1.12
 
